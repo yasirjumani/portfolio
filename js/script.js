@@ -9,6 +9,7 @@ if (navToggle && navLinks) {
 }
 
 const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
@@ -20,8 +21,17 @@ if (contactForm) {
 
     const subject = encodeURIComponent(`Portfolio contact from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    const mailtoUrl = `mailto:yasirjumani9@gmail.com?subject=${subject}&body=${body}`;
 
-    window.location.href = `mailto:yasirjumani9@gmail.com?subject=${subject}&body=${body}`;
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.click();
+
+    if (formStatus) {
+      formStatus.innerHTML =
+        `Your email app should be opening now. If nothing happens, reach me directly at
+         <a href="mailto:yasirjumani9@gmail.com">yasirjumani9@gmail.com</a>.`;
+    }
   });
 }
 
